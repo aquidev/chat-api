@@ -1,0 +1,20 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "backend for chat app",
+  "main": "index.js",
+  "author": "Aki",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20",
+    "socket.io": "^4.5.3"
+  },
+  "scripts": {
+    "start": "nodemon start"
+  }
+}

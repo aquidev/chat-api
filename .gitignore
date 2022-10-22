@@ -1,0 +1,4 @@
+config.js
+yarn-error.log
+*.lock
+node_modules

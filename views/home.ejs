@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App Socket.io</title>
+    <script src="https://cdn.socket.io/3.0.0/socket.io.js"></script>
+
+</head>
+<body>
+
+    <input placeholder="message" class="message">
+    <button onclick="sendMessage()">Send Message</button>
+    <h1></h1>
+
+    <script>
+        // console.log("<%= host_url %>");
+        const socket = io('<%= host_url %>');
+   
+        socket.on('connection', ()=> {
+            console.log(); 
+        });
+
+        socket.on('message', (data)=>{
+            document.querySelector('h1').innerHTML = data;
+        });
+        
+        const sendMessage = () =>{
+            const messageInput = document.querySelector('.message');
+            const message = messageInput.value;
+            socket.emit('message', message);
+        }
+
+   </script>
+  
+</body>
+</html>
