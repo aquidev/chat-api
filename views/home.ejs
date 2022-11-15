@@ -8,13 +8,27 @@
     <title>Chat App Socket.io</title>
     <script src="https://cdn.socket.io/3.0.0/socket.io.js"></script>
 
+   
+  
 </head>
 <body>
-
-    <input placeholder="message" class="message">
-    <button onclick="sendMessage()">Send Message</button>
+    
+    <input placeholder="message" class="message" id="messageId">
+    <button id="sendButton">Send Message</button>
     <h1></h1>
 
+    <!-- const [sendDataMessage, setSendDataMessage] = useState({
+        booking_id : props.booking.id,
+        sender_username : '',
+        account_type : '',
+        driver_id : '',
+        admin_id : '', 
+        message : '',
+        chat_id : '',
+        author_id : ''
+       
+    }); -->
+    
     <script>
         // console.log("<%= host_url %>");
         const socket = io('<%= host_url %>');
@@ -23,17 +37,30 @@
             console.log(); 
         });
 
-        socket.on('message', (data)=>{
+        socket.on('message-145-574-42-admin', (data)=>{
             document.querySelector('h1').innerHTML = data;
         });
         
-        const sendMessage = () =>{
-            const messageInput = document.querySelector('.message');
-            const message = messageInput.value;
-            socket.emit('message', message);
+        document.getElementById("sendButton").addEventListener("click", sendMessage);
+        
+        function sendMessage(){
+            // this.preventDefault();
+            console.log('clicked...');
+            var messageInput = document.querySelector('.message');
+            // var message = messageInput.value;
+            var message = {
+                "account_type" : "Admin",
+                "booking_id" : "574",
+                "message" : messageInput.value,
+                "driver_id" : "145",
+                "admin_id" : "42",
+                "sender_username" : "calogistics-admin/demo",
+                "chat_id" : "1",
+                "author_id" : "42"
+            };
+            socket.emit('message-from-admin', message);
         }
 
    </script>
-  
 </body>
 </html>
